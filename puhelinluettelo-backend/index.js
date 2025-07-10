@@ -6,7 +6,10 @@ const path = require('path')
 app.use(cors())
 app.use(express.json())
 
+// Staattiset tiedostot frontend-kansiosta
 app.use(express.static(path.join(__dirname, '../puhelinluettelo-frontedn/dist')))
+
+path.join(__dirname, '../puhelinluettelo-frontedn/dist/index.html')
 
 
 let persons = [
@@ -32,7 +35,7 @@ app.post('/api/persons', (req, res) => {
     return res.status(400).json({ error: 'name must be unique' })
   }
 
-    const newPerson = {
+  const newPerson = {
     id: Math.floor(Math.random() * 100000),
     name: body.name,
     number: body.number
@@ -42,12 +45,13 @@ app.post('/api/persons', (req, res) => {
   res.json(newPerson)
 })
 
-  app.delete('/api/persons/:id', (req, res) => {
+app.delete('/api/persons/:id', (req, res) => {
   const id = Number(req.params.id)
   persons = persons.filter(p => p.id !== id)
   res.status(204).end()
 })
 
+// Kaikki muut polut ohjataan index.html:ään
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../puhelinluettelo-frontedn/dist/index.html'))
 })
