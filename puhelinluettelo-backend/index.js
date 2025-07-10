@@ -8,6 +8,7 @@ app.use(express.json())
 
 app.use(express.static(path.join(__dirname, '../puhelinluettelo-frontedn/dist')))
 
+
 let persons = [
   { id: 1, name: 'Arto Hellas', number: '040-123456' },
   { id: 2, name: 'Ada Lovelace', number: '39-44-5323523' },
@@ -45,6 +46,10 @@ app.post('/api/persons', (req, res) => {
   const id = Number(req.params.id)
   persons = persons.filter(p => p.id !== id)
   res.status(204).end()
+})
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../puhelinluettelo-frontedn/dist/index.html'))
 })
 
 const PORT = process.env.PORT || 3001
