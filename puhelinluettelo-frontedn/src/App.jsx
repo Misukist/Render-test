@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 
-const baseUrl = '/api/persons'
+const baseUrl = 'https://puhelinluettelo-backend-ivdg.onrender.com/api/persons'
 
 function App() {
   const [persons, setPersons] = useState([])
@@ -9,7 +9,7 @@ function App() {
   const [newNumber, setNewNumber] = useState('')
 
   useEffect(() => {
-    axios.get('/api/persons')
+    axios.get(baseUrl)
       .then(response => {
         setPersons(response.data)
       })
@@ -23,7 +23,7 @@ function App() {
       number: newNumber
     }
 
-    axios.post('/api/persons', newPerson)
+    axios.post(baseUrl, newPerson)
       .then(response => {
         setPersons(persons.concat(response.data))
         setNewName('')
@@ -34,7 +34,7 @@ function App() {
   const deletePerson = (id) => {
     const person = persons.find(p => p.id === id)
     if (person && window.confirm(`Poistetaanko ${person.name}?`)) {
-      axios.delete(`${'/api/persons'}/${id}`)
+      axios.delete(`${baseUrl}/${id}`)
         .then(() => {
           setPersons(persons.filter(p => p.id !== id))
         })
