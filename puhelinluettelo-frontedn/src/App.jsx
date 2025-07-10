@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 
-const baseUrl = 'https://puhelinluettelo-backend-ivdg.onrender.com/api/persons'
+const baseUrl = import.meta.env.VITE_BACKEND_URL
 
 function App() {
   const [persons, setPersons] = useState([])
@@ -71,3 +71,4 @@ function App() {
 }
 
 export default App
+
