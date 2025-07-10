@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 
-const baseUrl = import.meta.env.VITE_BACKEND_URL
+const baseUrl = '/api/persons'
 
 function App() {
   const [persons, setPersons] = useState([])

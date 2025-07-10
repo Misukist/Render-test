@@ -6,7 +6,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://puhelinluettelo-backend-ivdg.onrender.com',
+        target: 'https://puhelinluettelo-backend-ivdg.onrender.com/',
         changeOrigin: true,
       },
     },
