@@ -2,7 +2,6 @@ const express = require('express')
 const cors = require('cors')
 const app = express()
 const path = require('path')
-VITE_BASE_URL=https://puhelinluettelo-backend-ivdg.onrender.com/api/persons
 
 app.use(cors())
 app.use(express.json())
