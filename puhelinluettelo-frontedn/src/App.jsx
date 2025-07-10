@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 
-const baseUrl = 'http://localhost:3001/api/persons'
+const baseUrl = '/api/persons'
 
 function App() {
   const [persons, setPersons] = useState([])
@@ -9,7 +9,7 @@ function App() {
   const [newNumber, setNewNumber] = useState('')
 
   useEffect(() => {
-    axios.get('http://localhost:3001/api/persons')
+    axios.get('/api/persons')
       .then(response => {
         setPersons(response.data)
       })
@@ -23,7 +23,7 @@ function App() {
       number: newNumber
     }
 
-    axios.post('http://localhost:3001/api/persons', newPerson)
+    axios.post('/api/persons', newPerson)
       .then(response => {
         setPersons(persons.concat(response.data))
         setNewName('')
@@ -34,7 +34,7 @@ function App() {
   const deletePerson = (id) => {
     const person = persons.find(p => p.id === id)
     if (person && window.confirm(`Poistetaanko ${person.name}?`)) {
-      axios.delete(`${'http://localhost:3001/api/persons'}/${id}`)
+      axios.delete(`${'/api/persons'}/${id}`)
         .then(() => {
           setPersons(persons.filter(p => p.id !== id))
         })
@@ -71,4 +71,3 @@ function App() {
 }
 
 export default App
-
